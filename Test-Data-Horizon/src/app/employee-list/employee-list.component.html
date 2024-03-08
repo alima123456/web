@@ -1,0 +1,40 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<div class="container mt-4" >
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Employee ID</th>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Email</th>
+          <th>Salary</th>
+          <th>Address</th>
+          <th>Image URL</th>
+          <th>Contact Number</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let employee of employees | slice: (currentPage - 1) * pageSize : currentPage * pageSize">
+          <td>{{ employee.id }}</td>
+          <td>{{ employee.firstName }} {{ employee.lastName }}</td>
+          <td>{{ employee.age }}</td>
+          <td>{{ employee.email }}</td>
+          <td>{{ employee.salary }}</td>
+          <td>{{ employee.address }}</td>
+          <td>{{ employee.imageUrl }}</td>
+          <td>{{ employee.contactNumber }}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <div class="d-flex justify-content-between">
+      <button class="btn" (click)="currentPage = currentPage - 1" [disabled]="currentPage === 1">Previous</button>
+      {{ currentPage }}
+      <button class="btn" (click)="currentPage = currentPage + 1" [disabled]="currentPage * pageSize >= employees.length">Next</button>
+    </div>
+    <div class="d-flex justify-content-between">
+      <button class="btn" (click)="sortByFirstName()">Sort by firstName</button>
+    </div>
+  </div>
+  
